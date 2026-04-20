@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula Web Programming</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="/AULA05/js/cadastroClientes.js"></script>
+    <script src="/AULA05/js/cadastroClientes.js" defer></script>
   
 </head>
 <body>
@@ -18,8 +18,11 @@
             </h2>
             <div id="form">
                 <form name="frm_clientes" method="get" action="">
-                    <label>Nome:</label> <input type="text" name="txt_nome" value="" id="nome" class="valor" placeholder="Nome do Cliente"> <br>
-                    <label>E-mail:</label><input type="text" name="txt_email" value="" id="email" class="valor" placeholder="nome@email.com" > <br>
+                    <label>Nome:</label>
+                    <input type="text" name="txt_nome" value="" id="nome" class="valor" placeholder="Nome do Cliente"> <br>
+
+                    <label>E-mail:</label>
+                    <input type="text" name="txt_email" value="" id="email" class="valor" placeholder="nome@email.com" > <br>
                     <input type="button" name="btnSalvar" id="salvar" value="Salvar" class="botao">
                 </form>
             </div>
@@ -55,7 +58,7 @@
 
     </main>
     <footer>
-        Professor Marcel Neves Teixeira
+       DSA - Desenvolvimento por Diego Araujo - 2026
     </footer>
 </body>
 </html>
