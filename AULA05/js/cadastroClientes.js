@@ -29,6 +29,7 @@
 
 //Escopo global
 const botaoSalvar = document.getElementById('salvar')
+const botaoLimpar = document.getElementById('limpar')
 const nome = document.getElementById('nome')
 const email = document.getElementById('email')
 
@@ -81,10 +82,39 @@ const blockNumber = function(tecla) {
     }
 }
 
+//Funcao de limpar dados
+const resetDados = function() {
+    //Limpar dados do form
+    nome.value = ''
+    email.value = ''
+
+    //Limpar dados da lista de clientes
+    let contator = 1
+    while(contador <= 4) {
+        
+        let colunaNome = document.getElementById('nome' + contador)
+        let colunaEmail = document.getElementById('email' + contador)
+
+        colunaNome.innerText = ''
+        colunaEmail.innerText = ''
+
+        contador += 1
+    }
+
+    contadorRegistros = 1
+}
+
 botaoSalvar.addEventListener('click', function() {
     // Se os dados estiverem OK, entao iremos chamar a funcao para listar os dados
     if (getDados()) {
         setDadosList()
+    }
+})
+
+botaoLimpar.addEventListener('click', function() {
+    let result = confirm('Deseja realmente limpar os dados (formulario e lista de clientes)?')
+    if(result) {
+        resetDados()
     }
 })
 
