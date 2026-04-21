@@ -29,6 +29,7 @@
 
 //Escopo global
 const botaoSalvar = document.getElementById('salvar')
+const caixaNome = document.getElementById('nome')
 
 const getDados = function() {
     let nome = document.getElementById('nome')
@@ -53,6 +54,20 @@ const getDados = function() {
     // console.log('Email: ' + email.value)
 }
 
+//Funcao para impedir digitacao numeros no campo nome
+const blockNumber = function(tecla) {
+    if (tecla.charCode >= 33 && tecla.charCode <= 64) {
+        return false
+    }
+
+}
+
 botaoSalvar.addEventListener('click', function() {
     getDados()
+})
+
+caixaNome.addEventListener('keypress', function(event) {
+    if (blockNumber(event) == false) {
+        event.preventDefault() //Cancela o evento de digitacao de numeros
+    }
 })
