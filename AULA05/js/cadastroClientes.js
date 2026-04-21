@@ -29,11 +29,14 @@
 
 //Escopo global
 const botaoSalvar = document.getElementById('salvar')
-const caixaNome = document.getElementById('nome')
+const nome = document.getElementById('nome')
+const email = document.getElementById('email')
 
+var contadorRegistros = 1
+
+//Funcao para retirar e validar os dados do formulario
 const getDados = function() {
-    let nome = document.getElementById('nome')
-    let email = document.getElementById('email')
+    let status = true
 
     //Zerar o background dos campos
     nome.style.backgroundColor = '#ffffff'
@@ -43,15 +46,32 @@ const getDados = function() {
     if(nome.value == '') {
         alert('O campo nome é obrigatório')
         nome.style.backgroundColor = '#f11316a4'
+        status = false
     }
 
     if(email.value == '') {
         alert('O campo email é obrigatório')
         email.style.backgroundColor = '#f11316a4'
+        status = false
     }
 
-    // console.log('Nome: ' + nome.value)
-    // console.log('Email: ' + email.value)
+    return status
+}
+
+// Funcao para inserir os dados do cliente na tabela de listagem
+const setDadosList = function() {
+
+    if (contadorRegistros <= 4) {
+        let colunaNome = document.getElementById('nome' + contadorRegistros)
+        let colunaEmail = document.getElementById('email' + contadorRegistros)
+
+        colunaNome.innerText = nome.value
+        colunaEmail.innerText = email.value
+
+        contadorRegistros += 1
+    }else{
+        alert('Não é possivel incluir novos clientes')
+    }
 }
 
 //Funcao para impedir digitacao numeros no campo nome
@@ -59,14 +79,16 @@ const blockNumber = function(tecla) {
     if (tecla.charCode >= 33 && tecla.charCode <= 64) {
         return false
     }
-
 }
 
 botaoSalvar.addEventListener('click', function() {
-    getDados()
+    // Se os dados estiverem OK, entao iremos chamar a funcao para listar os dados
+    if (getDados()) {
+        setDadosList()
+    }
 })
 
-caixaNome.addEventListener('keypress', function(event) {
+nome.addEventListener('keypress', function(event) {
     if (blockNumber(event) == false) {
         event.preventDefault() //Cancela o evento de digitacao de numeros
     }
